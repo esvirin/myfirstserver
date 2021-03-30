@@ -1,10 +1,8 @@
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
-const sendResponse = require("./extensions/sendResponse");
-const getContentType = require("./extensions/getContentType");
-const uploadData = require("./extensions/uploadData");
-const downloadData = require("./extensions/downloadData");
+const sendResponse = require("./sendResponse");
+const getContentType = require("./getContentType");
 
 const connect = http
   .createServer((request, response) => {
@@ -14,11 +12,7 @@ const connect = http
         break;
 
       case "/upload":
-        uploadData(request, response);
-        break;
-
-      case "/download":
-        downloadData("users.json", "application/json", response);
+        getData(request, response);
         break;
 
       default:
@@ -27,3 +21,14 @@ const connect = http
     }
   })
   .listen(3000, (er) => (er ? console.log(er) : console.log("server created")));
+
+function getData(request, response) {
+  let body = "";
+  request.on("data", (chunk) => {
+    body += chunk.toString();
+  });
+  request.on("end", () => {
+    console.log(JSON.parse(body));
+    response.end();
+  });
+}

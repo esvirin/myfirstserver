@@ -8,10 +8,25 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <form name="upload-form">
-      <input id="upload-file" type="file" name="upload-form" />
-      <button type="submit">send</button>
+    <div class="name">i'm not a designer</div>
+
+    <form id="form-add" name="upload-form">
+      <label for="form-name">name</label>
+      <input type="text" name="upload-form" id="form-name" />
+
+      <label for="form-email">email</label>
+      <input type="email" name="upload-form" id="form-email" />
+
+      <label for="form-tel">teleph</label>
+      <input type="email" name="upload-form" id="form-tel" />
     </form>
+
+    <button id="upload-button" name="upload-form" type="submit">
+      add new <strong>user</strong>
+    </button>
+
+    <button id="download-button" type="submit">see <strong>all</strong></button>
+
     <script src="app.js"></script>
   </body>
 </html>

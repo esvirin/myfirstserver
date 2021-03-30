@@ -16,28 +16,31 @@ body {
   text-transform: lowercase;
   font-weight: bold;
   color: aqua;
+  @keyframes growUp {
+    0% {
+      background-color: #fff;
+      color: aqua;
+    }
+    50% {
+      background-color: aqua;
+      color: #fff;
+    }
+
+    100% {
+      background-color: #fff;
+      color: aqua;
+    }
+  }
   animation: growUp ease 3s infinite;
 }
-@keyframes growUp {
-  0% {
-    background-color: #fff;
-    color: aqua;
-  }
-  50% {
-    background-color: aqua;
-    color: #fff;
-  }
-  100% {
-    background-color: #fff;
-    color: aqua;
-  }
-}
+
 #form-add {
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-row: 1fr 1fr;
   grid-gap: 10px;
 }
+
 #upload-button {
   width: 280px;
   margin: 20px 0;

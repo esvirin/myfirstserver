@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports = function (url, type, response) {
-  let file = path.join(__dirname + "/accets", url);
+  let file = path.join(__dirname, "../", "/accets", url);
   console.log(file);
   fs.readFile(file, (error, content) => {
     if (error) {
