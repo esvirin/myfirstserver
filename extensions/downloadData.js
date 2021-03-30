@@ -1,20 +1,24 @@
-const fs = require("fs");
-const path = require("path");
+const mysql = require("mysql2/promise");
+const config = require("./db-config");
 
-module.exports = function (url, type, response) {
-  let file = path.join(__dirname, "../", url);
-  console.log(file);
-  fs.readFile(file, (error, content) => {
-    if (error) {
-      response.writeHead(404);
-      response.write("file not found");
-      console.log("error 404");
-      response.end();
-    } else {
-      response.writeHead(200, { "Content-Type": type });
-      response.write(content);
-      console.log("response 200");
-      response.end();
-    }
-  });
+async function dataBase() {
+  const connect = await mysql.createConnection(config);
+  const [rows, fields] = await connect.execute("SELECT * FROM `users`");
+  connect.end();
+  return rows;
+}
+
+module.exports = async function (response) {
+  const result = await dataBase();
+  if (result) {
+    response.writeHead(200, { "Content-Type": "application/json" });
+    response.write(JSON.stringify(result));
+    console.log("response 200");
+    response.end();
+  } else {
+    response.writeHead(404);
+    response.write("data not found");
+    console.log("error 404");
+    response.end();
+  }
 };

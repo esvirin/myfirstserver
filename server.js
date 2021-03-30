@@ -18,7 +18,7 @@ const connect = http
         break;
 
       case "/download":
-        downloadData("users.json", "application/json", response);
+        downloadData(response);
         break;
 
       default:
