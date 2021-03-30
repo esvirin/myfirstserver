@@ -8,5 +8,11 @@
     "start": "node server.js"
   },
   "author": "esvirin@mail.com",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "mysql": "^2.18.1"
+  },
+  "dependencies": {
+    "mysql2": "^2.2.5"
+  }
 }
